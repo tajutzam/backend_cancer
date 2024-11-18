@@ -49,6 +49,14 @@ const upload = multer({
 
 const uploadSingleImage = upload.single("image");
 
+
+app.get("test", function (req, res) {
+  return res.json({
+    status: true,
+    message: "server is work !",
+  });
+});
+
 app.post("/predict", function (req, res) {
   uploadSingleImage(req, res, async function (err) {
     if (err) {
