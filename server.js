@@ -7,7 +7,7 @@ const admin = require("firebase-admin");
 
 const app = express();
 
-const serviceAccount = require("./submissionmlgc-medica-firebase-adminsdk-twauv-c83e4c3deb.json");
+const serviceAccount = require("./submissionmlgc-danaariska-4a0dace443a3.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
@@ -21,7 +21,7 @@ const loadModel = async () => {
   console.log("Model is in progress to load...");
   try {
     model = await tf.loadGraphModel(
-      "https://storage.googleapis.com/dicoding-submission-medica-2/model.json"
+      "https://storage.googleapis.com/dicoding-danaariska/submissions-model/model.json"
     );
     console.log("Model loaded successfully.");
   } catch (error) {
@@ -49,12 +49,43 @@ const upload = multer({
 
 const uploadSingleImage = upload.single("image");
 
-
 app.get("test", function (req, res) {
   return res.json({
     status: true,
     message: "server is work !",
   });
+});
+
+app.get("/predict/histories", async (req, res) => {
+  try {
+    const snapshot = await db.collection("predictions").get();
+    const predictions = snapshot.docs.map((doc) => {
+      const data = doc.data();
+
+      console.log(data);
+      return {
+        id: doc.id,
+        history: {
+          result: data.result,
+          createdAt: data.createdAt,
+          suggestion: data.suggestion,
+          id: data.id,
+        },
+      };
+    });
+
+    // Send the response back
+    res.json({
+      status: "success",
+      data: predictions,
+    });
+  } catch (error) {
+    console.error("Error fetching predictions:", error);
+    res.status(500).json({
+      status: "error",
+      message: "Failed to retrieve predictions data",
+    });
+  }
 });
 
 app.post("/predict", function (req, res) {
@@ -91,25 +122,54 @@ app.post("/predict", function (req, res) {
 
     const imageBuffer = file.buffer;
     try {
-      const tensor = tf.node
+      let tensor = tf.node.decodeImage(imageBuffer, 3);
+
+      const shape = tensor.shape;
+
+      console.log(shape);
+
+      if (shape.length !== 3 || shape[2] !== 3) {
+        throw new Error("Image must be in RGB format");
+      }
+
+      if (shape[0] > 4000 || shape[1] > 3000) {
+        throw new Error("Bad Request!");
+      }
+
+      const tensorDecoded = tf.node
         .decodeImage(imageBuffer, 3) // Decode as RGB
         .resizeNearestNeighbor([224, 224]) // Resize to model input size
         .expandDims()
         .div(255.0);
 
-      const prediction = model.predict(tensor);
-      const result = prediction.dataSync()[0];
-      console.log(result);
-      const classification = result > 0.5 ? "Cancer" : "Non-cancer";
+      const prediction = model.predict(tensorDecoded);
+
+      const score = await prediction.data();
+
+      const finalScore = Math.max(...score) * 100;
+
+      console.log(finalScore);
+
+      let label, isBadRequest;
+      if (finalScore > 58) {
+        label = "Cancer";
+        isBadRequest = false;
+      } else if (finalScore < 58) {
+        label = "Non-cancer";
+        isBadRequest = false;
+      } else {
+        isBadRequest = true;
+        label = null;
+      }
 
       const response = {
         status: "success",
-        message: "Model predicted successfully",
+        message: "Model is predicted successfully",
         data: {
           id: uuidv4(),
-          result: classification,
+          result: label,
           suggestion:
-            classification === "Cancer"
+            label === "Cancer"
               ? "Segera periksa ke dokter!"
               : "Penyakit kanker tidak terdeteksi.",
           createdAt: new Date().toISOString(),
@@ -121,8 +181,9 @@ app.post("/predict", function (req, res) {
         .doc(response.data.id)
         .set(response.data);
 
-      return res.status(200).json(response);
+      return res.status(201).json(response);
     } catch (error) {
+      console.log(error);
       return res.status(400).json({
         status: "fail",
         message: "Terjadi kesalahan dalam melakukan prediksi",

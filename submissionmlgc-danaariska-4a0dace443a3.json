@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "submissionmlgc-danaariska",
+  "private_key_id": "4a0dace443a3c92748215e75b5aa4ebc24a7511a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC7TfdBzECqkfKy\n/VtFM5pBvBZR3K2L12cCD7bv0t+3XVh7Qu7qh6HFaYlYGL9eGsYE6na+muQhQmap\nr8H9P7uYcyMfKefrzb/iuQDdSzeAkuRz6AsKQQxU3w6UtijCUrgj+Iv4Qwf//U67\nEfGIeomhZb2IvT2Eb+ssYHH+9l/t7kO3elrTwVey78iMYt0aGR4ifMNDKsQJajzX\naBUpw4AVQ2KuNlqqcsfEmc9Fm2j2eEGxPRDq6NaGbb/rKKNOXYXpuCDCe8P+EHV4\nYBCvJ2L23gBq/qRom/ZostHiLn90jEfpwTdbezEy3tFD4EGpcfeIFQKAkDLbUPAU\nHBel2FqdAgMBAAECggEABGYghvk9kY6g77w3NF5cYpaAwwZsRasBk9D7qmaTnier\n6CUvyEP23tSLhw1PEpjitViDq8FRLJ4gcXQbxGSxSrN1i99SP5L9ooesHLEOCiUp\nBrct6d085WdhsnNpbKWVsTPpUaN9YMaPCUyyv/z6FizLW+vvMcORIeHX+4rHa6aR\nErg3FT4aJZny+yD6/C5TIjriYyCzikSEpLcR+R/pRMc0U6KR3EaGN+DC4D+frsAR\n2v58RiXPnzIRiL/YFPnbSwwVXtf+uSr+2YNtXifHcZP64en4OdL0I8VZ9Nq+4s44\nXHVvfa69C+rdFbjgwI9uwobVC78D6vwjj5TUuxZuXwKBgQDMOg1WHh4OUNZ6zN9q\nXnMyH1vrOQQCZwgKMxbFyy0P4QofFCb6lUS1JGdxfklVkkWtRISk8MIX+IBWaVQb\neLl3iOb5E2krzY5Bp4PGvkeeU+4YBvgwY+BcY3SPVBbWLUboAEO3pLvgmLf46jI5\nL9iRg/SCpvm2ktFBHwBNd9AGLwKBgQDqybFa2DPQCzvw1+LmKZ6ph2+UJls0ICuM\nKx1/IJ+hrnnkIYUwUW+iEYy/r6zKAhR8Pd8MJwtsI88TRVYY3v4vxRNIS6ImAkMN\nSF+fB42IQcn+Ff0PdGOthrM0Bd4LpoBdOJxqbrf8eMqB4Bpz5xe5PX5LQDomBD26\nevY0QKJE8wKBgAaQ2zrojvjQ2oRqL8igrr1uyqq+U4WsQFLrn5DOXm2DQ6sKH9Kw\nl9vnBrhcYgkxQbI3YLhY0TSqFZ4xlrWnZPcV3K8nU5tH6Yns08zA81aAxkfZeYM8\nwsrVm7q77lwGaqAs2gB+eFfZMRj8lo7GHgVXo7XLnn2jLL0WPRFAh9ybAoGBAJVM\nUBUeakQfAKyz+zq0uInA77jbcx+AXXCycf1G93tOgYAJuLHy9vOuCTxTL6L9E521\nkkIeCetoEeOFMax7EFO8E/ji72cQBSdLIFL18I/2lcWWoebT8haEEyw/luT9qZ6d\nwwkDAsfu34caxHdzOei3K7oaS1+lTsNoMWsktor1AoGAEmhip4dl0mqQmJtB+JGr\n/mSwu3CSkFQ71LvfUBnOPOZNHpAQMUbQZ3V1QdAFEldfhRdhKi5ESJHFMm4NiWfv\n1RLoyeLl1cYtKRia+i2tWO9zXKNsqs6RqPODtCnIhw6L6kJn+JHksOtZacYP7C73\n1INFX1uXacnkBuCNM+W640g=\n-----END PRIVATE KEY-----\n",
+  "client_email": "submissionmlgc-danaariska@appspot.gserviceaccount.com",
+  "client_id": "104156322661800294001",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/submissionmlgc-danaariska%40appspot.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
